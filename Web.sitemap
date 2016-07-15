@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default.aspx" title="Samples Home"  description="MapScript C# ASP.NET 2.0 Samples Home">
+        <siteMapNode url="Setup.aspx" title="Setup"  description="Setting up MapScript C# for use with ASP.NET 2.0" />
+        <siteMapNode url="BasicMap.aspx" title="Basic Map"  description="Zoom In, Zoom Out, Zoom Extent, and Pan" />
+        <siteMapNode url="Selection.aspx" title="Selection"  description="Identify and Select by Attributes" />
+</siteMapNode>
+</siteMap>
+

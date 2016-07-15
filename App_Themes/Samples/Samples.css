@@ -1,0 +1,24 @@
+﻿body 
+{
+
+ background-color:Navy;
+}
+
+.MasterDIV 
+{
+    border: solid 2 black;
+    background-color:White;
+    font-family: Trebuchet MS;
+    color: Navy;
+    width: 700px;
+    margin: 0 auto 0 auto;
+}
+
+.HeaderDIV
+{
+    
+    width: 690px;
+    background: gray;
+    color: Navy;
+}
+

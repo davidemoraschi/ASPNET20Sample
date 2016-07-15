@@ -1,0 +1,848 @@
+#
+# Start of map file
+#
+MAP
+	DATAPATTERN "the_geom"
+
+	NAME GARFIELD
+	STATUS ON
+	SIZE 500 400
+	EXTENT -633771.227805 1060738.573036 152927.340425 1689379.870746  
+	UNITS METERS
+	SHAPEPATH ""
+	FONTSET fonts.list
+	IMAGECOLOR 218 227 240
+	SYMBOLSET "symbolset.list"
+
+	IMAGETYPE png
+	OUTPUTFORMAT
+	   NAME png
+	   DRIVER "GD/PNG"
+	   MIMETYPE "image/png"
+	   IMAGEMODE RGBA
+	   EXTENSION "png"
+		#TRANSPARENT ON
+	END
+	OUTPUTFORMAT
+	   NAME jpeg
+	   DRIVER "GD/JPEG"
+	   MIMETYPE "image/jpeg"
+	   IMAGEMODE RGB
+	   EXTENSION "jpg"
+	END
+
+	PROJECTION # ALBERS OK 
+		proj=aea
+		lat_1=29.500000000 #SP1
+		lat_2=45.500000000 #SP2
+		lat_0=23.000000000 #REF LAT
+		lon_0=-96.000000000 #CENTRAL MERIDIAN
+		x_0=0.000 #FALSE EAST
+		y_0=0.000 # FALSE NORTH
+		datum=NAD83
+		ellps=GRS80
+		no_defs
+	END
+
+	WEB
+		#EMPTY "d:\project\clo\inetpub\wwwroot\clomap\mapCLOnorecords.htm"
+		#TEMPLATE "d:\project\clo\inetpub\wwwroot\clomap\mapCLOmap.htm"
+		#TEMPLATE "http://localhost/clogis/clomap/mapCLOmap_basic.htm"
+		#TEMPLATE "http://localhost/clogis/clomap/mapBasic.htm"
+		#MAXSCALE 4460025.787354 
+		IMAGEPATH "D:\Develop\RBDMSGIS_LOCAL\WEBGIS\output\"
+		IMAGEURL "/WEBGIS/output/"
+	END
+
+	LEGEND
+		STATUS ON
+		KEYSIZE 18 12
+		TRANSPARENT OFF
+		LABEL
+			TYPE BITMAP
+			SIZE MEDIUM
+			COLOR 0 0 89
+		END
+		#TEMPLATE "d:\project\clo\inetpub\wwwroot\clomap\mapCLOhtmllegend.htm"
+	END
+
+	##############
+	### LAYERS ###
+	##############
+
+	### COUNTIES ###
+	LAYER 
+		NAME Counties
+		GROUP "Administrative Boundary"
+		TYPE POLYGON
+		STATUS DEFAULT
+		DATA county
+		PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		METADATA
+			id "20"		
+		END
+		LABELITEM "NAME"
+		TEMPLATE "nothing.htm"
+		CLASS
+			MINSCALE 2000000
+    		COLOR 247 239 222
+    		OUTLINECOLOR 200 200 200
+    		LABEL
+				TYPE TRUETYPE
+				COLOR 132 130 0
+				OUTLINECOLOR 255 255 255 
+				FONT arial
+				SIZE 4.5
+	    		POSITION auto
+	    		PARTIALS FALSE
+	    		BUFFER 0
+			END 
+		END
+		CLASS
+			MAXSCALE 1999999
+			MINSCALE 1000000
+    		COLOR 247 239 222
+    		OUTLINECOLOR 200 200 200
+    		LABEL
+				TYPE TRUETYPE
+				COLOR 132 130 0
+				OUTLINECOLOR 255 255 255 
+				FONT arial
+				SIZE 6
+	    		POSITION cc
+	    		PARTIALS FALSE
+	    		BUFFER 0
+			END 
+		END
+		CLASS
+			MAXSCALE 999999
+			MINSCALE 500000
+    		COLOR 247 239 222
+    		OUTLINECOLOR 200 200 200
+    		LABEL
+				TYPE TRUETYPE
+				COLOR 132 130 0
+				OUTLINECOLOR 255 255 255 
+				FONT arial
+				SIZE 7
+	    		POSITION cc
+	    		PARTIALS FALSE
+	    		BUFFER 0
+			END 
+		END
+		CLASS
+			MAXSCALE 499999
+			MINSCALE 250000
+    		COLOR 247 239 222
+    		OUTLINECOLOR 200 200 200
+    		LABEL
+				TYPE TRUETYPE
+				COLOR 132 130 0
+				OUTLINECOLOR 255 255 255 
+				FONT arial
+				SIZE 8
+	    		POSITION cc
+	    		PARTIALS FALSE
+	    		BUFFER 0
+			END 
+		END
+		CLASS
+			MAXSCALE 249999
+			#MINSCALE 100000
+    		COLOR 247 239 222
+    		OUTLINECOLOR 200 200 200
+    		#LABEL
+				#TYPE TRUETYPE
+				#COLOR 132 130 0
+				#OUTLINECOLOR 255 255 255 
+				#FONT arial
+				#SIZE 10
+	    		#POSITION cc
+	    		#PARTIALS FALSE
+	    		#BUFFER 0
+			#END 
+		END
+		#CLASS
+			#MAXSCALE 99999
+    		#COLOR 247 239 222
+    		#OUTLINECOLOR 200 200 200
+		#END
+	END
+	
+	### ZIP CODE BOUNDARIES ###
+	LAYER 
+		NAME "ZIP Code Boundaries"
+		GROUP "Administrative Boundaries"
+		TYPE POLYGON
+		STATUS OFF
+		DATA ZIP
+		PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		METADATA
+			id "7001"		
+		END
+		CLASS
+    		COLOR 255 227 194
+    		OUTLINECOLOR 110 110 110
+		END
+	END	
+		
+	
+	### Highways ###
+	LAYER 
+		NAME "Highways"
+		GROUP "Transportation"
+		TYPE LINE
+		STATUS DEFAULT
+		DATA HIGHWAYS
+		CLASSITEM "HWY"
+		PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		METADATA
+			id "8002"		
+		END
+		LABELITEM RTE
+		CLASS
+			MINSCALE 850000
+			NAME 'Interstate'
+			EXPRESSION 'IS' 
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 2.5
+		END
+		CLASS
+			MINSCALE 850000
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 0.5
+		END
+		CLASS
+			MAXSCALE 849999
+			MINSCALE 315000
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 3
+		END
+		CLASS
+			MAXSCALE 849999
+			MINSCALE 315000
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 2
+		END
+		CLASS
+			MAXSCALE 849999
+			MINSCALE 315000
+			NAME 'State Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 0.5
+		END
+		CLASS
+			MAXSCALE 849999
+			MINSCALE 315000
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 0.5
+		END
+		CLASS
+			MAXSCALE 314999
+			MINSCALE 200000
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 4
+		END
+		CLASS
+			MAXSCALE 314999
+			MINSCALE 200000
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 2
+		END
+		CLASS
+			MAXSCALE 314999
+			MINSCALE 200000
+			NAME 'State Highway'
+			EXPRESSION 'ST'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 1
+		END
+		CLASS
+			MAXSCALE 314999
+			MINSCALE 200000
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 1
+		END
+		CLASS
+			MAXSCALE 199999
+			MINSCALE 45700
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 5
+		END
+		CLASS
+			MAXSCALE 199999
+			MINSCALE 45700
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 3
+		END
+		CLASS
+			MAXSCALE 199999
+			MINSCALE 45700
+			NAME 'State Highway'
+			EXPRESSION 'ST'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 2
+		END
+		CLASS
+			MAXSCALE 45699
+			MINSCALE 15000
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 2
+		END
+		CLASS
+			MAXSCALE 45699
+			MINSCALE 15000
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 6
+		END
+		CLASS
+			MAXSCALE 45699
+			MINSCALE 15000
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 4
+		END
+		CLASS
+			MAXSCALE 45699
+			MINSCALE 15000
+			NAME 'State Highway'
+			EXPRESSION 'ST'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 3
+		END
+		CLASS
+			MAXSCALE 45699
+			MINSCALE 15000
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 3
+		END
+		CLASS
+			MAXSCALE 14999
+			MINSCALE 7500
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 7
+		END
+		CLASS
+			MAXSCALE 14999
+			MINSCALE 7500
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 5
+		END
+		CLASS
+			MAXSCALE 14999
+			MINSCALE 7500
+			NAME 'State Highway'
+			EXPRESSION 'ST'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 4
+		END
+		CLASS
+			MAXSCALE 14999
+			MINSCALE 7500
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 4
+		END
+		CLASS
+			MAXSCALE 7499
+			NAME 'Interstate'
+			EXPRESSION 'IS'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 8
+		END
+		CLASS
+			MAXSCALE 7499
+			NAME 'US Highway'
+			EXPRESSION 'US'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 6
+		END
+		CLASS
+			MAXSCALE 7499
+			NAME 'State Highway'
+			EXPRESSION 'ST'
+    		COLOR 247 150 90
+    		SYMBOL "line"
+			SIZE 5
+		END
+		CLASS
+			MAXSCALE 7499
+			NAME 'Major Road'
+			EXPRESSION ''
+    		COLOR 210 210 210
+    		SYMBOL "line"
+			SIZE 5
+		END
+	END
+	
+	### HIGHWAY ANNOTATION ###
+	LAYER 
+		NAME "Highway Shields"
+		GROUP "Transportation"
+		TYPE ANNOTATION
+		STATUS On
+		DATA HIGHWAYS
+		CLASSITEM "HWY"
+		PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		METADATA
+			id "2551"		
+		END
+		LABELITEM RTE
+		CLASS
+			MINSCALE 2000000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 12
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 6
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 100
+			END
+		END
+		CLASS
+			MAXSCALE 1999999
+			MINSCALE 500000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 18
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 8
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 1999999
+			MINSCALE 500000
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 16
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 6
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END	
+		CLASS
+			MAXSCALE 499999
+			MINSCALE 100000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 20
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 10
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 499999
+			MINSCALE 100000
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 18
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 6
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 299999
+			MINSCALE 100000
+			NAME 'State HIGHWAY Shield'
+			EXPRESSION 'ST'
+			STYLE
+				 SYMBOL "Circle"
+				 OUTLINECOLOR 0 0 0
+				 COLOR 255 255 255
+				 SIZE 16
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL
+    			SIZE 6
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 99999
+			MINSCALE 50000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 22
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 12
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 99999
+			MINSCALE 50000
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 20
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 8
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 99999
+			MINSCALE 50000
+			NAME 'State HIGHWAY Shield'
+			EXPRESSION 'ST'
+			STYLE
+				 SYMBOL "Circle"
+				 OUTLINECOLOR 0 0 0
+				 COLOR 255 255 255
+				 SIZE 18
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL
+    			SIZE 6
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 49999
+			MINSCALE 25000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 24
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 14
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 49999
+			MINSCALE 25000
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 22
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 10
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 49999
+			MINSCALE 25000
+			NAME 'State HIGHWAY Shield'
+			EXPRESSION 'ST'
+			STYLE
+				 SYMBOL "Circle"
+				 OUTLINECOLOR 0 0 0
+				 COLOR 255 255 255
+				 SIZE 20
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL
+    			SIZE 8
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END	
+		CLASS
+			MAXSCALE 24999
+			MINSCALE 10000
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 26
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 16
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 24999
+			MINSCALE 10000
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 24
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 12
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 24999
+			MINSCALE 10000
+			NAME 'State HIGHWAY Shield'
+			EXPRESSION 'ST'
+			STYLE
+				 SYMBOL "Circle"
+				 OUTLINECOLOR 0 0 0
+				 COLOR 255 255 255
+				 SIZE 22
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL
+    			SIZE 10
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 9999
+			NAME 'Interstate Shield'
+			EXPRESSION 'IS'
+			STYLE
+				 SYMBOL "Interstate"
+				 SIZE 28
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 18
+    			COLOR 255 255 255
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 9999
+			NAME 'US HIGHWAY Shield'
+			EXPRESSION 'US'
+			STYLE
+				 SYMBOL "USHIGHWAY"
+				 SIZE 26
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL-BOLD
+    			SIZE 14
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+		CLASS
+			MAXSCALE 9999
+			NAME 'State HIGHWAY Shield'
+			EXPRESSION 'ST'
+			STYLE
+				 SYMBOL "Circle"
+				 OUTLINECOLOR 0 0 0
+				 COLOR 255 255 255
+				 SIZE 24
+			END
+    		LABEL
+    			TYPE TRUETYPE
+    			FONT ARIAL
+    			SIZE 12
+    			COLOR 0 0 0
+    			POSITION CC
+    			MINDISTANCE 200
+			END
+		END
+	END	
+	
+	
+	
+	
+	### POINT SELECT ###
+	LAYER
+	    NAME "POINT SELECT"
+	    TYPE POINT
+	    STATUS Default
+	    PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		CLASS
+			SYMBOL "Circle"
+			SIZE 10
+    		COLOR 255 0 0 
+		END
+	END #LAYER
+	
+	### POLYGON SELECT ###
+	LAYER
+	    NAME "POLYGON SELECT"
+	    TYPE POLYGON
+	    STATUS Default
+	    PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		TEMPLATE "nothing.htm"
+		TRANSPARENCY 10
+		CLASS
+			SIZE 10
+    		COLOR 255 0 0 
+		END
+	END #LAYER
+	
+	### LINE SELECT ###
+	LAYER
+	    NAME "LINE SELECT"
+	    TYPE LINE
+	    STATUS Default
+	    PROJECTION #GEOGRAPHIC NAD83
+			proj=longlat
+			ellps=GRS80 
+			no_defs 
+		END
+		CLASS
+			SIZE 10
+    		COLOR 255 0 0 
+		END
+	END #LAYER
+		
+END 

@@ -1,0 +1,34 @@
+<%@ Master Language="VB" CodeFile="Samples.master.vb" EnableTheming="true" Inherits="Samples" %>
+
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>MapScript C# Samples</title>
+    <link rel="stylesheet" href="App_Themes/Samples/Samples.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="MasterDIV">
+    <table>
+        <tr><td><div class="HeaderDIV">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+            </asp:SiteMapPath>
+            </div>
+        </td></tr>
+        <tr>
+            <td>
+                <asp:contentplaceholder id="Sample" runat="server">
+                </asp:contentplaceholder>
+            </td>
+        </tr>
+        <tr>
+            <td align="center"><div class="HeaderDIV">Download the source <a id="DownloadLink" runat="server">here</a>.</div></td>
+            
+        </tr>
+    </table>
+        
+    </div>
+    </form>
+</body>
+</html>
